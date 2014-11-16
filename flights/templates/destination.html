@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ cities }}{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1><a href="/">{{ cities }} ({{ code }})</a></h1></br>
+        {% for day, departure, arrival, price in cards %}
+            <div class="card text-center">
+                <div class="card-header">{{ day }}</div>
+                <div class="card-body"> 
+                    <div class="row">
+                        <div class="col-sm-3 col-12">
+                            <h5 class="card-title">Отправление: {{ departure }} </h5>
+                        </div>
+                        <div class="col-sm-1 col-12">
+                            <i class="fa fa-plane"></i>
+                        </div>
+                        <div class="col-sm-3 col-12">
+                            <h5 class="card-title">Прибытие: {{ arrival }}</h5>
+                        </div>
+                        <div class="col-sm-5 col-12">
+                            <h5 class="card-title">Цена: {{ price }} Тенге</h5>
+                        </div>
+                    </div>
+                </div>
+            </div></br>
+        {% endfor %}
+    </div>
+
+{% endblock %}

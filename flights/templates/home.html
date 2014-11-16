@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Направления{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1>ТОП 10 направлений</h1></br>
+        {% for code, city in destinations %}
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ code }}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ city }}</h5>
+                  <a href="destination/{{ code }}" class="btn btn-primary">Календарь низких цен</a>
+                </div>
+            </div>
+            </br>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
