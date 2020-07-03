@@ -37,6 +37,20 @@ def get_url(fly_from, fly_to, date_from, date_to, partner="picky", curr="KZT"):
     return final_url
 
 
+def get_check_fights_url(booking_token, bnum=1, pnum=1, currency="KZT"):
+    base = "https://booking-api.skypicker.com/api/v0.1/check_flights"
+    return f'{base}?booking_token={booking_token}&bnum={bnum}&pnum={pnum}&currency={currency}'
+
+
+def get_direction_keys():
+    return [key.value for key in Direction]
+
+
+def is_valid_ticket(data):
+    if data['flights_invalid']:
+        return Flase
+
+
 def get_destination_calls():
     today = datetime.date(datetime.now())
     day_after_one_month = today + timedelta(days=30)
