@@ -1,23 +1,24 @@
 from __future__ import absolute_import
 
 from django.shortcuts import render, redirect
+from django.core.cache import cache
+from datetime import datetime
+from . import utils
+
 import celery
-from . import tasks, utils
 
 
 def home(request):
     destinations = []
-
-    for d in utils.Direction:
-        cities = utils.code_to_city(d.value)
-        destinations.append([d.value, cities])
+    for direction in utils.get_direction_keys():
+        cities = utils.code_to_city(direction)
+        destinations.append([direction, cities])
 
     return render(request, "home.html", {"destinations": destinations})
 
 
 def destination(request, code):
-    from django.core.cache import cache
-    from datetime import datetime
+    
     flights = cache.get(code)
 
     cards = []
